@@ -15,17 +15,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include  
+from django.urls import path, re_path , include
 from boards import views
-from django.conf.urls.static import static
-from django.conf import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.home, name='home'),
+    re_path(r"^boards/(?P<pk>\d+)/?$", views.board_topics, name="board_topics"),
+    re_path(r'^boards/(?P<pk>\d+)/new/?$', views.new_topic, name='new_topic'),
 
     path("__reload__/", include("django_browser_reload.urls")),
 ]
 
+from django.conf.urls.static import static
+from django.conf import settings
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
