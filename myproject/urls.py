@@ -26,6 +26,7 @@ urlpatterns = [
     re_path(r'^signup/$', accounts_views.signup, name='signup'),
     # re_path(r"^boards/(?P<pk>\d+)/?$", views.board_topics, name="board_topics"),
     re_path(r'^boards/(?P<pk>\d+)/$', views.TopicListView.as_view(), name='board_topics'),
+    re_path(r'^settings/account/$', accounts_views.UserUpdateView.as_view(), name='my_account'),
     re_path(r'^boards/(?P<pk>\d+)/new/?$', views.new_topic, name='new_topic'),
     re_path(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
     re_path(r'^boards/(?P<pk>\d+)/topics/(?P<topic_pk>\d+)/$', views.PostListView.as_view(), name='topic_posts'),
