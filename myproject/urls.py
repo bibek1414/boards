@@ -28,6 +28,7 @@ urlpatterns = [
     re_path(r'^boards/(?P<pk>\d+)/$', views.TopicListView.as_view(), name='board_topics'),
     re_path(r'^boards/(?P<pk>\d+)/new/?$', views.new_topic, name='new_topic'),
     re_path(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
+    re_path(r'^boards/(?P<pk>\d+)/topics/(?P<topic_pk>\d+)/$', views.PostListView.as_view(), name='topic_posts'),
     re_path(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     re_path(r'^boards/(?P<pk>\d+)/topics/(?P<topic_pk>\d+)/posts/(?P<post_pk>\d+)/edit/$', views.PostUpdateView.as_view(), name='edit_post'),
     re_path(r'^reset/$',
