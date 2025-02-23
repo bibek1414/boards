@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 
 {% load static %}
@@ -24,7 +25,7 @@
     <div class="card-body p-3">
         <div class="row">
           <div class="col-2">
-            <img src="https://imgs.search.brave.com/7VnwAa_OUkkAKuWxpDhipQ-wlqpyWWO_DMXvRtgOXdE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/bmV2ZXItZG8tdGhp/cy1wZnAtZnItdjAt/NndiM3VldjJwOWdl/MS5wbmc_d2lkdGg9/NjQwJmNyb3A9c21h/cnQmYXV0bz13ZWJw/JnM9MGJkMjdlZjQz/MDIzZGUwYzBmZjJl/OTU4M2JkYTIyNWQ0/ZTNhN2ZjNA" alt="{{ post.created_by.username }}" class="w-25 rounded-circle">
+            <img src="{% static 'img/avatar.svg' %}" alt="{{ post.created_by.username }}" class="w-100">
             <small>Posts: {{ post.created_by.posts.count }}</small>
           </div>
           <div class="col-10">
@@ -37,11 +38,14 @@
               </div>
             </div>
             {{ post.message }}
-            {% if post.created_by == user %}
-              <div class="mt-3">
-                <a href="#" class="btn btn-primary btn-sm" role="button">Edit</a>
-              </div>
-            {% endif %}
+            
+          {% if post.created_by == user %}
+          <div class="mt-3">
+            <a href="{% url 'edit_post' post.topic.board.pk post.topic.pk post.pk %}"
+              class="btn btn-primary btn-sm"
+              role="button">Edit</a>
+          </div>
+          {% endif %}
           </div>
         </div>
       </div>
